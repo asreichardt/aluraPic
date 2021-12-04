@@ -12,7 +12,9 @@
                                               <!-- fotosComFiltro é computed, poderia ser o array fotos -->
            <meu-painel :titulo='f.titulo'>
               <imagem-responsiva  :url="f.url" :titulo="f.titulo"/>
-
+                  <meu-botao  rotulo="Remover" tipo="button" @click.native="remover(f.titulo)"/>
+                                                             <!--.native pq o componente nao esta programado para isso
+                                                              entao chamo o comportamento default -->         
            </meu-painel> 
 
         </li>
@@ -25,10 +27,13 @@
 <script>
 import Painel from './Painel.vue'
 import ImagemResponsiva from './ImagemResponsiva.vue'
+import Botao from './Botao.vue'
 export default {
     components:{
       'meu-painel': Painel,
-      'imagem-responsiva': ImagemResponsiva
+      'imagem-responsiva': ImagemResponsiva,
+      'meu-botao' : Botao
+
     },
     data(){
       return  {
@@ -63,7 +68,14 @@ export default {
                 return this.fotos;
               }
           }
+    },
+    methods: {
+
+          remover(foto){
+              alert("Deseja realmente remover a foto ? " + foto);
+          } 
     }
+
 
 }
 /**
