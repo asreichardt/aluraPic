@@ -12,9 +12,11 @@
                                               <!-- fotosComFiltro é computed, poderia ser o array fotos -->
            <meu-painel :titulo='f.titulo'>
               <imagem-responsiva  :url="f.url" :titulo="f.titulo"/>
-                  <meu-botao  rotulo="Remover" tipo="button" @click.native="remover(f.titulo)"/>
-                                                             <!--.native pq o componente nao esta programado para isso
-                                                              entao chamo o comportamento default -->         
+                  <meu-botao  rotulo="Remover" tipo="button" @botaoAtivado="remover(f.titulo,$event)"/>
+                                                             <!--.
+                                                               antes era @click.native="remover(f.titulo)
+                                                              native pq o componente nao esta programado para isso
+                                                               entao chamo o comportamento default -->         
            </meu-painel> 
 
         </li>
@@ -50,10 +52,7 @@ export default {
       //  alert("CRIANDO O COMPONENTE NO CREATED");
           this.$http.get('http://localhost:3000/v1/fotos')   // get do vueResource
           .then(res=>res.json())
-          .then(fotos =>this.fotos = fotos,err =>console.log(err))
-          
-          
-
+          .then(fotos =>this.fotos = fotos,err =>console.log(err))   
     }, 
     mounted(){
          //   alert("CRIANDO O COMPONENTE NO MOUNTEED");
@@ -71,8 +70,10 @@ export default {
     },
     methods: {
 
-          remover(foto){
-              alert("Deseja realmente remover a foto ? " + foto);
+          remover(foto, $event){
+              alert("A foto será removida > " + foto);
+              alert($event);
+
           } 
     }
 

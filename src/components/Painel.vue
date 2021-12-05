@@ -9,10 +9,12 @@
                     </slot>
                   </div>
                 </transition>  
+
           </div>
           
 </template>
 <script>
+
 export default {   
       props: ['titulo'],
       data(){

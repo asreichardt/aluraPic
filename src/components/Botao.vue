@@ -1,6 +1,6 @@
 
 <template>
-    <button class="botao botao-perigo" :type="tipo"> {{ rotulo }}  </button>
+    <button class="botao botao-perigo" :type="tipo"  @click="disparaAcao()"> {{ rotulo }}  </button>
 
 </template>
 
@@ -8,9 +8,24 @@
 
 export default {
 
-    props: ['tipo', 'rotulo']
-}
+props: ['tipo', 'rotulo'],
 
+methods :{
+        disparaAcao() {
+            if(confirm("Confirma operação ? ")){
+                this.$emit("botaoAtivado", new Date()); //dispara um evento no elemento pai chamando o médoto botaoAtivado
+               
+               /**this.$emit("botaoAtivado", new Date())
+                 * new Date() e um exemplo  de como podemos passar um dado como parametro p/
+                 *  o elemento para que usaria o $event para acessa-lo
+                 */
+            }
+
+        
+        }
+
+    }
+}
 </script>
 <style scoped>
     
